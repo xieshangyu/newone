@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     int speed = 10;
-    int bulletSpeed = 400;
-    public Transform spawnPoint;
-    public GameObject bullet;
+    int bulletSpeed = 600;
+    public Transform bulletPoint;
+    public GameObject bulletPrefab;
     Rigidbody2D _rigidbody2D;
     
     void Start()
@@ -23,11 +23,8 @@ public class Player : MonoBehaviour
         _rigidbody2D.velocity = new Vector2(xSpeed, ySpeed);
     
         if (Input.GetButtonDown("Jump")) {
-            GameObject newBullet = Instantiate(bullet, spawnPoint.position, Quaternion.identity);
+            GameObject newBullet = Instantiate(bulletPrefab, bulletPoint.position, Quaternion.identity);
             newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
         }
     }
-    // private void OnTriggerEnter2D(Collider2D other) {
-    //     SceneManager.LoadScene("Game Over");
-    // }
 }
