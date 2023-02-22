@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
         _rigidbody2D.velocity = new Vector2(xSpeed, ySpeed);
     
         if (Input.GetButtonDown("Jump")) {
-            GameObject newPaw = Instantiate(bullet, spawnPoint.position, Quaternion.identity);
-            newPaw.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
+            GameObject newBullet = Instantiate(bullet, spawnPoint.position, Quaternion.identity);
+            newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
         }
     }
     // private void OnTriggerEnter2D(Collider2D other) {
