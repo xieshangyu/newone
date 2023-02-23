@@ -6,9 +6,9 @@ public class PulsingEnemy : MonoBehaviour
 {
     public int pelletCount = 15;
     public GameObject pelletPrefab;
-    public int pelletSpeed;
+    public int pelletSpeed = 100;
 
-    public float fireRate;
+    public float fireRate = 1;
 
     public bool pulseOnce = false;
     // Start is called before the first frame update
