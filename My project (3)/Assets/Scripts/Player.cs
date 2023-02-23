@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetButtonDown("Jump")) {
             print("test");
-            _audioSource.PlayOneShot(shootSnd);
+            // _audioSource.PlayOneShot(shootSnd);
             GameObject newBullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
             newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
         }
