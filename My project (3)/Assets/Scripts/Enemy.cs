@@ -14,12 +14,13 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // _gameManager = GameObject.FindObjectOfType<GameManager>();
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
+        print(_gameManager);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Bullet")) {
-            // _gameManager.AddScore(pointValue);
+            _gameManager.AddScore(pointValue);
             Destroy(other.gameObject);
             hp -= 1;
             if(hp <= 0) {
