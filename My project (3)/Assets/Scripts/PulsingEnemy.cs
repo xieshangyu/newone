@@ -24,7 +24,9 @@ public class PulsingEnemy : MonoBehaviour
         while(true) {
             // Don't start shooting until the enemy stops moving
             if(_rigidbody.velocity.y == 0) {
+                // Space each enemy bullet evenly
                 int degreePerPellet = 360 / pelletCount;
+                // Create each bullet
                 for(int i = 0; i < pelletCount; i ++) {
                     GameObject newPellet = Instantiate(pelletPrefab, transform.position, Quaternion.Euler(0, 0, degreePerPellet*i));
                     newPellet.GetComponent<Rigidbody2D>().AddForce(newPellet.transform.up * pelletSpeed);
@@ -35,10 +37,11 @@ public class PulsingEnemy : MonoBehaviour
     }
 
     void Update() {
+        // Move the enemy onto the screen
         if(transform.position.y <= 4) {
             _rigidbody.velocity = Vector2.zero;
         }
-
+        // Spin the enemy
         transform.Rotate(new Vector3(0,0,rotateSpeed));
     }
 }

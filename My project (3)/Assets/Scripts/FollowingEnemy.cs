@@ -19,6 +19,7 @@ public class FollowingEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Follow the player
         transform.rotation = Quaternion.LookRotation(Vector3.forward, transform.position - player.position);
         _rigidbody.velocity = -transform.up * speed;
     }

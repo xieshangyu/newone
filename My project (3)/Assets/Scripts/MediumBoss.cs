@@ -6,42 +6,68 @@ public class MediumBoss : MonoBehaviour
 {
     public int hp = 10;
     Rigidbody2D _rigidbody;
-    int wobbleCount = 2;
+    Transform player;
+    public int speed = 5;
+
+    public enum State {MoveToScreen, MoveLeft, MoveRight}
+    State currentState = State.MoveToScreen;
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        MoveOntoScreen();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     void MoveOntoScreen() {
-        while(transform.position.y > 3.5) {
+        // If the boss isn't on the screen, move it down
+        if(transform.position.y > 4.5) {
             _rigidbody.velocity = Vector2.down; 
         }
-        _rigidbody.velocity = Vector2.zero;
-        MoveLeft();
+        else { // Otherwise, slide the boss left
+            _rigidbody.velocity = Vector2.zero;
+            currentState = State.MoveLeft;
+        }
     }
 
     void MoveLeft() {
-        while(transform.position.x > -4) {
-            _rigidbody.velocity = Vector2.left; 
+        // If the boss hasn't reached the left boundary, move it left
+        if(transform.position.x > -3.5) {
+            _rigidbody.velocity = Vector2.left * speed; 
+        } else { // Otherwise, slide the boss right
+            _rigidbody.velocity = Vector2.zero;
+            currentState = State.MoveRight;
         }
-        _rigidbody.velocity = Vector2.zero;
-        MoveRight();
     }
 
     void MoveRight() {
-        while(transform.position.x < 4) {
-            _rigidbody.velocity = Vector2.right; 
+        // If the boss hasn't reached the right boundary, move it right
+        if(transform.position.x < 3.5) {
+            _rigidbody.velocity = Vector2.right * speed; 
+        } else { // Otherwise, slide the boss left
+            _rigidbody.velocity = Vector2.zero;
+            currentState = State.MoveLeft;
         }
-        _rigidbody.velocity = Vector2.zero;
-        MoveLeft();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {  
+        // Make the boss look at the player
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, transform.position - player.position);
+        switch(currentState) {
+            case State.MoveToScreen:
+                MoveOntoScreen();
+                break;
+            case State.MoveLeft:
+                MoveLeft();
+                break;
+            case State.MoveRight:
+                MoveRight();
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
