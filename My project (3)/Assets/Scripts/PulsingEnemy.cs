@@ -11,6 +11,7 @@ public class PulsingEnemy : MonoBehaviour
     public float fireRate = 1;
 
     public bool pulseOnce = false;
+    public float rotateSpeed = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +30,9 @@ public class PulsingEnemy : MonoBehaviour
 
             yield return new WaitForSeconds(1 / fireRate);
         }
+    }
+
+    void Update() {
+        transform.Rotate(new Vector3(0,0,rotateSpeed));
     }
 }
