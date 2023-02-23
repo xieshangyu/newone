@@ -27,7 +27,13 @@ public class Player : MonoBehaviour
             newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
         }
     }
-    // private void OnTriggerEnter2D(Collider2D other) {
-    //     SceneManager.LoadScene("Game Over");
-    // }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("EnemyJet")) {
+            // _gameManager.AddScore(pointValue);
+            // Instantiate(explosion, transform.position, Quaternion.identity);
+            // Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }

@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start() {
         scoreUI.text = "SCORE: " + score;
-        livesUI.text = "LIVES " + lives;
+        livesUI.text = "LIVES: " + lives;
     }
 
     public void AddScore(int points) {
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void AddLife(int life) {
         lives += life;
-        livesUI.text = "LIVES " + lives;
+        livesUI.text = "LIVES: " + lives;
     }
 
     public void Update()
