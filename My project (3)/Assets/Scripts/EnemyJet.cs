@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyJet : MonoBehaviour
-{
+{   
+    public int speed = -50;
     int health = 30;
     Rigidbody2D _rigidbody2D;
     public GameObject hit;
@@ -12,14 +13,14 @@ public class EnemyJet : MonoBehaviour
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _rigidbody2D.AddForce(new Vector2(0, -50));
+        _rigidbody2D.AddForce(new Vector2(0, speed));
     }
 
     void Update() {
         if (transform.position.y < -6) {
             Destroy(gameObject);
         }
-        print(health);
+        // print(health);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
