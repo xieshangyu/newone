@@ -23,7 +23,10 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             hp -= 1;
             if(hp <= 0) {
+                Instantiate(death, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+            } else {
+                Instantiate(hit, transform.position, Quaternion.identity);
             }
         }
     }
