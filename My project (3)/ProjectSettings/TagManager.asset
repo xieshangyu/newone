@@ -6,6 +6,9 @@ TagManager:
   tags:
   - EnemyJet
   - Bullet
+  - GameManager
+  - EnemySpawner
+  - bossBullet
   - KillZone
   - EnemyBullet
   - Enemy

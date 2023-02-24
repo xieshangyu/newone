@@ -35,7 +35,6 @@ public class Player : MonoBehaviour
 
 
         if(Input.GetButtonDown("Jump")) {
-            print("test");
             // _audioSource.PlayOneShot(shootSnd);
             GameObject newBullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
             newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
@@ -43,6 +42,13 @@ public class Player : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        if (!invincible && other.CompareTag("bossBullet")) {
+            // _gameManager.AddScore(pointValue);
+            // Instantiate(explosion, transform.position, Quaternion.identity);
+            // Destroy(other.gameObject);
+            _gameManager.deleteLife(1);
+            Destroy(other.gameObject);
+        }
         if(!invincible && other.CompareTag("Enemy")) {
             _gameManager.AddLife(-1);
             invincible = true;
