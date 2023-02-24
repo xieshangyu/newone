@@ -44,7 +44,7 @@ public class BossJet : MonoBehaviour
         }
 
         if (other.CompareTag("Player")) {
-            _gameManager.deleteLife(1);
+            _gameManager.DeleteLife(1);
         }
     }
 }

@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         livesUI.text = "LIVES: " + lives;
     }
 
-    public void deleteLife(int life) {
+    public void DeleteLife(int life) {
         lives -= life;
         livesUI.text = "LIVES: " + lives;
         if (lives <= 0) {

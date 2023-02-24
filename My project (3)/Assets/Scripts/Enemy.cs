@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
         }
         
         if (other.CompareTag("Player")) {
-            _gameManager.AddLife(-1);
+            _gameManager.DeleteLife(1);
             Destroy(gameObject);
         }
     }
