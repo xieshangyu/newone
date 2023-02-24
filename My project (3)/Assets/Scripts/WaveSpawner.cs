@@ -14,7 +14,7 @@ public class WaveSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnEnemies());
     }
 
     IEnumerator SpawnEnemies() {
