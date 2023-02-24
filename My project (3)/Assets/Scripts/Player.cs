@@ -43,11 +43,10 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (!invincible && other.CompareTag("bossBullet")) {
-            // _gameManager.AddScore(pointValue);
-            // Instantiate(explosion, transform.position, Quaternion.identity);
-            // Destroy(other.gameObject);
-            _gameManager.deleteLife(1);
+            _gameManager.AddLife(-1);
             Destroy(other.gameObject);
+            invincible = true;
+            StartCoroutine(Flash());
         }
         if(!invincible && other.CompareTag("Enemy")) {
             _gameManager.AddLife(-1);

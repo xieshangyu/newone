@@ -31,9 +31,7 @@ public class Enemy : MonoBehaviour
         }
 
         if(other.CompareTag("KillZone")) {
-            GameObject newEnemy = Instantiate(gameObject);
-            newEnemy.transform.position = new Vector2(transform.position.x, 8);
-            Destroy(gameObject);
+            transform.position = new Vector2(transform.position.x, 7);
         }
         
         if (other.CompareTag("Player")) {
