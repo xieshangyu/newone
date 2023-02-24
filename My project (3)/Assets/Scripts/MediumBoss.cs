@@ -8,6 +8,7 @@ public class MediumBoss : MonoBehaviour
     public GameObject bulletSpawnerPrefab;
     public GameObject pulseFormation;
     public GameObject bulletImpactPrefab;
+    public GameObject explosionPrefab;
     Rigidbody2D _rigidbody;
     Transform player;
     public int speed = 5;
@@ -100,6 +101,19 @@ public class MediumBoss : MonoBehaviour
             Destroy(other.gameObject);
             hp -= 1;
             if(hp <= 0) {
+                hpUI.text = "BOSS HP: 0";
+                
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+                foreach(GameObject spawner in bulletSpawners) {
+                    spawner.GetComponent<BossBulletSpawner>().DestroySelf();
+                }
+
+
+                foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")) {
+                    Destroy(enemy);
+                }
+
                 Destroy(gameObject);
             }
         }
