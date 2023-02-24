@@ -71,7 +71,7 @@ public class MediumBoss : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("PlayerBullet")) {
+        if(other.CompareTag("Bullet")) {
             // _gameManager.AddScore(pointValue);
             Destroy(other.gameObject);
             hp -= 1;

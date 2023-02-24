@@ -254,3 +254,4 @@ MonoBehaviour:
   shootSnd: {fileID: 8300000, guid: be57a923de7f64d67858239b95a03c97, type: 3}
   spawnPoint: {fileID: 4480039902247468718}
   bulletPrefab: {fileID: 3013759254781304962, guid: 983ecb1018772b043b2f9a4985b7bfd2, type: 3}
+  invincibleTime: 2

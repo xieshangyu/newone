@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _gameManager = GameObject.FindObjectOfType<GameManager>();
-        print(_gameManager);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -29,6 +28,12 @@ public class Enemy : MonoBehaviour
             } else {
                 Instantiate(hit, transform.position, Quaternion.identity);
             }
+        }
+
+        if(other.CompareTag("KillZone")) {
+            GameObject newEnemy = Instantiate(gameObject);
+            newEnemy.transform.position = new Vector2(transform.position.x, 8);
+            Destroy(gameObject);
         }
     }
 }
