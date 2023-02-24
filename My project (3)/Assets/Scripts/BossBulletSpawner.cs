@@ -47,4 +47,8 @@ public class BossBulletSpawner : MonoBehaviour
 
     }
 
+    public void DestroySelf() {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
 }

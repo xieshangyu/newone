@@ -10,20 +10,21 @@ public class player_level4 : MonoBehaviour
     public int life;
 
     public AudioClip Shoot_sound;
+
+
+    public AudioClip Laser_sound;
     public Transform spawnPoint;
     public GameObject bulletPrefab;
+
+    public GameObject laserPrefab;
 
     public int gun = 1;
     Rigidbody2D rigid_body_2D;
     AudioSource audio_source;
     GameManager game_manager;
 
+    bool isFiring = false; // 是否正在持续射
 
-
-    // public float leftBound = -0.7f;
-    // public float rightBound = 0.7f;
-    // public float topBound = 5f;
-    // public float bottomBound = -5f;
 
     public GameObject explosion;
     void Start()
@@ -49,6 +50,38 @@ public class player_level4 : MonoBehaviour
 
         transform.position = currentPosition;
         rigid_body_2D.velocity = new Vector2(x_speed,y_speed);
+
+
+        if (gun == 4)
+        {
+            // 改变玩家的武器模型
+            // bulletPrefab = laserPrefab;
+            
+            // 修改子弹速度
+            // bulletSpeed = 1000;
+            
+            // 修改声音
+            Shoot_sound = Laser_sound;
+        }
+
+
+        if (Input.GetButtonDown("Jump")) {
+            isFiring = true;
+        }
+        else if (Input.GetButtonUp("Jump")) {
+            isFiring = false;
+        }
+
+        if (isFiring &&gun==4) {
+
+            Fire();
+        }
+        void Fire()
+        {
+                audio_source.PlayOneShot(Shoot_sound);
+                GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(2,bulletSpeed));
+        }
 
         if(Input.GetButtonDown("Jump"))
         { 
@@ -88,6 +121,9 @@ public class player_level4 : MonoBehaviour
                 newBullet2.GetComponent<Rigidbody2D>().AddForce(new Vector2(2, bulletSpeed));
                 newBullet3.GetComponent<Rigidbody2D>().AddForce(new Vector2(2, bulletSpeed));
             }
+
+
+
 
         }
     }
