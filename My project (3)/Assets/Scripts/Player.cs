@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     SpriteRenderer _spriteRenderer;
     public int gunLevel = 1;
 
+    Vector2 playView;
 
     void Start()
     {
@@ -26,6 +27,8 @@ public class Player : MonoBehaviour
         _gameManager = GameObject.FindObjectOfType<GameManager>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _audioSource = GetComponent<AudioSource>();
+        Camera cam = Camera.main;
+        playView = cam.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
     }
 
     // Update is called once per frame
@@ -33,6 +36,21 @@ public class Player : MonoBehaviour
     {
         float xSpeed = Input.GetAxis("Horizontal") * speed;
         float ySpeed = Input.GetAxis("Vertical") * speed;
+        
+        if (transform.position.x > playView.x) {
+            xSpeed = Mathf.Clamp(xSpeed, -speed, 0);
+        }
+        else if (transform.position.x < -playView.x) {
+            xSpeed = Mathf.Clamp(xSpeed, 0, speed);
+        }
+
+        if (transform.position.y > playView.y) {
+            ySpeed = Mathf.Clamp(xSpeed, -speed, 0);
+        }
+        else if (transform.position.y < -playView.y) {
+            ySpeed = Mathf.Clamp(xSpeed, 0, speed);
+        }
+        
         _rigidbody2D.velocity = new Vector2(xSpeed, ySpeed);
 
 

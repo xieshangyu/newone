@@ -43,13 +43,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ZeroScore(int zero) {
+        score = zero;
+        scoreUI.text = "SCORE: " + zero;
+    }
+
+    public void ResetLives(int life) {
+        lives = life;
+        scoreUI.text = "SCORE: " + lives;
+    }
+
     public void Update()
     {
-        if(scoreUI == null) {
+        if (scoreUI == null) {
             scoreUI = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<TextMeshProUGUI>();
             scoreUI.text = "SCORE: " + score;
         }
-        if(livesUI == null) {
+        if (livesUI == null) {
             livesUI = GameObject.FindGameObjectWithTag("LivesUI").GetComponent<TextMeshProUGUI>();
             livesUI.text = "LIVES: " + lives;
         }
