@@ -10429,7 +10429,7 @@ GameObject:
   - component: {fileID: 1166922388}
   - component: {fileID: 1166922387}
   - component: {fileID: 1166922386}
-  - component: {fileID: 1166922385}
+  - component: {fileID: 1166922390}
   m_Layer: 0
   m_Name: bullet prop
   m_TagString: Untagged
@@ -10437,18 +10437,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1166922385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166922384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84982c19da3a61447a338ff85bef2664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1166922386
 Rigidbody2D:
   serializedVersion: 4
@@ -10563,6 +10551,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1166922390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166922384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48e57120f85744f1b51af15699a616b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1293910772
 GameObject:
   m_ObjectHideFlags: 0
@@ -15955,6 +15955,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4076655145897157222, guid: 242615a319dec284e9d56928e99c1c9b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5428017903593401929, guid: 242615a319dec284e9d56928e99c1c9b, type: 3}
       propertyPath: m_RootOrder
       value: 1
