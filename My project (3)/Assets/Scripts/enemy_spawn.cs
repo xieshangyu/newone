@@ -23,7 +23,7 @@ public class enemy_spawn : MonoBehaviour
 
             Vector2 sqawnPos_2 = new Vector2(Random.Range(-8.5f,8.5f),Random.Range(10,20));
             Instantiate(flyPrefab, sqawnPos_2, Quaternion.identity);
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(3f);
 
             
         }
