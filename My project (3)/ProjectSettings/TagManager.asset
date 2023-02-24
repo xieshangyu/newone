@@ -6,6 +6,10 @@ TagManager:
   tags:
   - EnemyJet
   - Bullet
+  - KillZone
+  - EnemyBullet
+  - Enemy
+  - BossBulletSpawner
   layers:
   - Default
   - TransparentFX
