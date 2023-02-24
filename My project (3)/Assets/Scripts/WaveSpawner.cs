@@ -31,9 +31,9 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(true) {
+        if(!bossFight && currentWave >= wavePresets.Length) {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            if(!bossFight) {
+            if(enemies.Length == 0) {
                 bossFight = true;
                 if(bossPrefab != null) {
                     Instantiate(bossPrefab, bossPrefab.transform.position, bossPrefab.transform.rotation);
