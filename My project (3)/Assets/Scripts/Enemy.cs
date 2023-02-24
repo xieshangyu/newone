@@ -19,11 +19,11 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Bullet")) {
-            _gameManager.AddScore(pointValue);
             Destroy(other.gameObject);
             hp -= 1;
-            if(hp <= 0) {
+            if (hp <= 0) {
                 Instantiate(death, transform.position, Quaternion.identity);
+                _gameManager.AddScore(pointValue);
                 Destroy(gameObject);
             } else {
                 Instantiate(hit, transform.position, Quaternion.identity);
@@ -34,9 +34,9 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector2(transform.position.x, 7);
         }
         
-        if (other.CompareTag("Player")) {
-            _gameManager.DeleteLife(1);
-            Destroy(gameObject);
-        }
+        // if (other.CompareTag("Player")) {
+        //     _gameManager.DeleteLife(1);
+        //     Destroy(gameObject);
+        // }
     }
 }
