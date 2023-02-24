@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     AudioSource _audioSource;
     GameManager _gameManager;
     SpriteRenderer _spriteRenderer;
+    public int gunLevel = 1;
 
 
     void Start()
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _gameManager = GameObject.FindObjectOfType<GameManager>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,11 +37,32 @@ public class Player : MonoBehaviour
 
 
         if(Input.GetButtonDown("Jump")) {
-            // _audioSource.PlayOneShot(shootSnd);
-            GameObject newBullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
-            newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
+            _audioSource.PlayOneShot(shootSnd);
+            if(gunLevel == 1) { FireOneBullet(); }
+            else if(gunLevel == 2) {FireTwoBullets(); }
+            else{ FireThreeBullets(); }
         }
     }
+
+    void FireOneBullet() {
+        GameObject newBullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
+        newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
+    }
+
+
+    void FireTwoBullets() {
+        GameObject newBullet = Instantiate(bulletPrefab, spawnPoint.position + new Vector3(-0.2f, -0.2f, 0), Quaternion.identity);
+        newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
+        newBullet = Instantiate(bulletPrefab, spawnPoint.position + new Vector3(0.2f, -0.2f, 0), Quaternion.identity);
+        newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
+    }
+
+
+    void FireThreeBullets() {
+        FireOneBullet();
+        FireTwoBullets();
+    }
+
 
     void OnTriggerEnter2D(Collider2D other) {
         if (!invincible && other.CompareTag("bossBullet")) {
@@ -50,13 +73,19 @@ public class Player : MonoBehaviour
         }
         if(!invincible && other.CompareTag("Enemy")) {
             _gameManager.DeleteLife(1);
+            Destroy(other.gameObject);
             invincible = true;
             StartCoroutine(Flash());
         } 
         if(!invincible && other.CompareTag("EnemyBullet")) {
             _gameManager.DeleteLife(1);
+            Destroy(other.gameObject);
             invincible = true;
             StartCoroutine(Flash());
+        }
+        if(other.CompareTag("Upgrade")) {
+            Destroy(other.gameObject);
+            gunLevel ++;
         }
     }
 

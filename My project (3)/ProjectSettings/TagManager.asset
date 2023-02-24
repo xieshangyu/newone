@@ -16,6 +16,7 @@ TagManager:
   - BossHpUI
   - ScoreUI
   - LivesUI
+  - Upgrade
   layers:
   - Default
   - TransparentFX
