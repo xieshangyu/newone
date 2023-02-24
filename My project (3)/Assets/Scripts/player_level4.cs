@@ -56,7 +56,7 @@ public class player_level4 : MonoBehaviour
         rigid_body_2D.velocity = new Vector2(x_speed,y_speed);
 
 
-        if (gun == 4)
+        if (gun >= 4)
         {
             // 改变玩家的武器模型
             // bulletPrefab = laserPrefab;
