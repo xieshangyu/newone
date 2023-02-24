@@ -23,6 +23,9 @@ public class player_level4 : MonoBehaviour
     AudioSource audio_source;
     GameManager game_manager;
 
+    SpriteRenderer _spriteRenderer;
+    public float invincibleTime = 3;
+    private bool invincible = false;
     bool isFiring = false; // 是否正在持续射
 
 
@@ -33,6 +36,7 @@ public class player_level4 : MonoBehaviour
         audio_source = GetComponent<AudioSource>();
         life = 3;
         game_manager = GameObject.FindObjectOfType<GameManager>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -135,22 +139,28 @@ public class player_level4 : MonoBehaviour
 
         // livesUI.text = "LIVES: " + lives;
     }
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.gameObject.tag == "enemy")
-    //     {
-    //         print("player-hit"+life);
-    //         game_manager.KillLife();
-    //         life-=1;
-    //         if(life<1)
-    //         {
-    //             Die();
-    //         }
-    //     }
+    void OnTriggerEnter2D(Collider2D other) {
+        if(!invincible && other.CompareTag("Enemy")) {
+            game_manager.AddLife(-1);
+            invincible = true;
+            StartCoroutine(Flash());
+        } 
+        if(!invincible && other.CompareTag("EnemyBullet")) {
+            game_manager.AddLife(-1);
+            invincible = true;
+            StartCoroutine(Flash());
+        }
+    }
 
-    // }
-    // public void Die() {
-    //     Instantiate(explosion,transform.position,Quaternion.identity);
-    //     Destroy(gameObject);
-    // }
+    IEnumerator Flash() {
+        float flashDuration = invincibleTime / 6;
+        for(int i = 0; i < 3; i++) {
+            _spriteRenderer.color = Color.clear;
+            yield return new WaitForSeconds(flashDuration);
+            _spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(flashDuration);
+        }   
+        invincible = false;
+        yield return new WaitForSeconds(0);
+    }
 }
