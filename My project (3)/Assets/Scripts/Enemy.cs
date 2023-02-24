@@ -35,5 +35,10 @@ public class Enemy : MonoBehaviour
             newEnemy.transform.position = new Vector2(transform.position.x, 8);
             Destroy(gameObject);
         }
+        
+        if (other.CompareTag("Player")) {
+            _gameManager.AddLife(-1);
+            Destroy(gameObject);
+        }
     }
 }
