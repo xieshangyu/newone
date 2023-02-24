@@ -45,6 +45,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pulser (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5138535006430987437, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
+      propertyPath: fireRate
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138535006430987437, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
+      propertyPath: pelletCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138535006430987437, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
+      propertyPath: rotateSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5138535006430987439, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -107,6 +119,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pulser
       objectReference: {fileID: 0}
+    - target: {fileID: 5138535006430987437, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
+      propertyPath: fireRate
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138535006430987437, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
+      propertyPath: pelletCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138535006430987437, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
+      propertyPath: rotateSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5138535006430987439, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -168,6 +192,18 @@ PrefabInstance:
     - target: {fileID: 5138535006430987436, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
       propertyPath: m_Name
       value: Pulser (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138535006430987437, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
+      propertyPath: fireRate
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138535006430987437, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
+      propertyPath: pelletCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138535006430987437, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
+      propertyPath: rotateSpeed
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5138535006430987439, guid: 2ae0f23cc00f0ba45941192cf53a6e52, type: 3}
       propertyPath: m_RootOrder
