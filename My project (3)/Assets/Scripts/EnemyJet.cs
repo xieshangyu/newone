@@ -18,13 +18,6 @@ public class EnemyJet : MonoBehaviour
         
     }
 
-    void Update() {
-        if (transform.position.y < -6) {
-            Destroy(gameObject);
-        }
-        // print(health);
-    }
-
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Bullet")) {
             health -= 10;

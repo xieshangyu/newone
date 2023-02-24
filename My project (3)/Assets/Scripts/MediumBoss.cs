@@ -1,22 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class MediumBoss : MonoBehaviour
 {
     public int hp = 10;
+    public GameObject bulletSpawnerPrefab;
+    public GameObject pulseFormation;
+    public GameObject bulletImpactPrefab;
+    public GameObject explosionPrefab;
     Rigidbody2D _rigidbody;
     Transform player;
     public int speed = 5;
-
-    public enum State {MoveToScreen, MoveLeft, MoveRight}
+    public float fireRate = 10f;
+    enum State {MoveToScreen, MoveLeft, MoveRight}
     State currentState = State.MoveToScreen;
+    GameObject[] bulletSpawners;
+    TextMeshProUGUI hpUI;
 
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        hpUI = GameObject.FindGameObjectWithTag("BossHpUI").GetComponent<TextMeshProUGUI>();
+        hpUI.text = "BOSS HP: " + hp;
+        hpUI.color = new Color32(157, 78, 221, 255);
+
+        Instantiate(bulletSpawnerPrefab, bulletSpawnerPrefab.transform.position, bulletSpawnerPrefab.transform.rotation);
+        bulletSpawners = GameObject.FindGameObjectsWithTag("BossBulletSpawner");
+        Instantiate(pulseFormation, pulseFormation.transform.position, pulseFormation.transform.rotation);
+        StartCoroutine(FireBullets());
     }
 
     void MoveOntoScreen() {
@@ -54,6 +68,7 @@ public class MediumBoss : MonoBehaviour
     void Update()
     {  
         // Make the boss look at the player
+        hpUI.text = "BOSS HP: " + hp;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, transform.position - player.position);
         switch(currentState) {
             case State.MoveToScreen:
@@ -70,12 +85,35 @@ public class MediumBoss : MonoBehaviour
         }
     }
 
+    IEnumerator FireBullets() {
+        while(true) {
+            int spawnerIndex = (int)(Random.Range(0, bulletSpawners.Length));
+            GameObject spawner = bulletSpawners[spawnerIndex];
+            StartCoroutine(spawner.GetComponent<BossBulletSpawner>().FireBullet());
+            print(1.0f / fireRate);
+            yield return new WaitForSeconds(1.0f / fireRate);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("PlayerBullet")) {
-            // _gameManager.AddScore(pointValue);
+        if(other.CompareTag("Bullet")) {
+            Instantiate(bulletImpactPrefab, other.transform.position, Quaternion.identity);            
             Destroy(other.gameObject);
             hp -= 1;
             if(hp <= 0) {
+                hpUI.text = "BOSS HP: 0";
+                
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+                foreach(GameObject spawner in bulletSpawners) {
+                    spawner.GetComponent<BossBulletSpawner>().DestroySelf();
+                }
+
+
+                foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")) {
+                    Destroy(enemy);
+                }
+
                 Destroy(gameObject);
             }
         }

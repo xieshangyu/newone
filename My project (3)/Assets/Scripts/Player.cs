@@ -9,17 +9,21 @@ public class Player : MonoBehaviour
     public AudioClip shootSnd;
     public Transform spawnPoint;
     public GameObject bulletPrefab;
-
+    public float invincibleTime = 3;
+    private bool invincible = false;
     Rigidbody2D _rigidbody2D;
 
     AudioSource _audioSource;
     GameManager _gameManager;
+    SpriteRenderer _spriteRenderer;
+
 
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource>();
-        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -37,14 +41,35 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("bossBullet")) {
+    void OnTriggerEnter2D(Collider2D other) {
+        if (!invincible && other.CompareTag("bossBullet")) {
             // _gameManager.AddScore(pointValue);
             // Instantiate(explosion, transform.position, Quaternion.identity);
             // Destroy(other.gameObject);
             _gameManager.deleteLife(1);
             Destroy(other.gameObject);
         }
+        if(!invincible && other.CompareTag("Enemy")) {
+            _gameManager.AddLife(-1);
+            invincible = true;
+            StartCoroutine(Flash());
+        } 
+        if(!invincible && other.CompareTag("EnemyBullet")) {
+            _gameManager.AddLife(-1);
+            invincible = true;
+            StartCoroutine(Flash());
+        }
     }
 
+    IEnumerator Flash() {
+        float flashDuration = invincibleTime / 6;
+        for(int i = 0; i < 3; i++) {
+            _spriteRenderer.color = Color.clear;
+            yield return new WaitForSeconds(flashDuration);
+            _spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(flashDuration);
+        }   
+        invincible = false;
+        yield return new WaitForSeconds(0);
+    }
 }

@@ -9,6 +9,11 @@ TagManager:
   - GameManager
   - EnemySpawner
   - bossBullet
+  - KillZone
+  - EnemyBullet
+  - Enemy
+  - BossBulletSpawner
+  - BossHpUI
   layers:
   - Default
   - TransparentFX

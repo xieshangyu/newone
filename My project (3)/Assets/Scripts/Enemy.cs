@@ -8,20 +8,32 @@ public class Enemy : MonoBehaviour
     public int hp = 10;
     GameManager _gameManager;
 
+    public GameObject hit;
+    public GameObject death;
+
     // Start is called before the first frame update
     void Start()
     {
-        // _gameManager = GameObject.FindObjectOfType<GameManager>();
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("PlayerBullet")) {
-            // _gameManager.AddScore(pointValue);
+        if(other.CompareTag("Bullet")) {
+            _gameManager.AddScore(pointValue);
             Destroy(other.gameObject);
             hp -= 1;
             if(hp <= 0) {
+                Instantiate(death, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+            } else {
+                Instantiate(hit, transform.position, Quaternion.identity);
             }
+        }
+
+        if(other.CompareTag("KillZone")) {
+            GameObject newEnemy = Instantiate(gameObject);
+            newEnemy.transform.position = new Vector2(transform.position.x, 8);
+            Destroy(gameObject);
         }
     }
 }
