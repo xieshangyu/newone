@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MediumSpawner : MonoBehaviour
+public class WaveSpawner : MonoBehaviour
 {
     public GameObject[] wavePresets;
     public float[] waveDelays;
+    public string nextLevel;
     public GameObject bossPrefab;
     private bool bossFight = false;
     private int currentWave = 0;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnEnemies());
+        // StartCoroutine(SpawnEnemies());
     }
 
     IEnumerator SpawnEnemies() {
@@ -29,11 +31,16 @@ public class MediumSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!bossFight && currentWave >= wavePresets.Length) {
+        if(true) {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            if(enemies.Length == 0) {
+            if(!bossFight) {
                 bossFight = true;
-                Instantiate(bossPrefab, bossPrefab.transform.position, bossPrefab.transform.rotation);
+                if(bossPrefab != null) {
+                    Instantiate(bossPrefab, bossPrefab.transform.position, bossPrefab.transform.rotation);
+                }
+                else {
+                    SceneManager.LoadScene(nextLevel);
+                }
             }
         }
     }

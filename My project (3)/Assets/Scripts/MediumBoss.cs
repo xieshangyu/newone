@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
 public class MediumBoss : MonoBehaviour
 {
     public int hp = 10;
-    public string nextLevel = "HardLevel";
+    public string nextLevel = "GameBeat";
     public GameObject bulletSpawnerPrefab;
     public GameObject pulseFormation;
     public GameObject bulletImpactPrefab;
@@ -117,15 +116,9 @@ public class MediumBoss : MonoBehaviour
                     Destroy(enemy);
                 }
 
-                Destroy(gameObject);
+                gameObject.transform.position = new Vector3(0f, 15f, 0f);
+                SceneManager.LoadScene(nextLevel);
             }
         }
     }
-
-
-    IEnumerator GoToNextLevel() {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(nextLevel);
-    }
-
 }

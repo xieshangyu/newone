@@ -14,8 +14,7 @@ public class BossJet : MonoBehaviour
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -37,7 +36,7 @@ public class BossJet : MonoBehaviour
                 Instantiate(death, transform.position, Quaternion.identity);
                 _gameManager.AddScore(100);
                 Destroy(gameObject);
-                SceneManager.LoadScene("MediumLevel");
+                SceneManager.LoadScene("HardLevel");
             } else {
                 Instantiate(hit, transform.position, Quaternion.identity);
             }

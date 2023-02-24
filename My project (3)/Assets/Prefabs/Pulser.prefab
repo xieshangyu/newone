@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3aa16b5fffe4a4baaa9864cfa1b9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: 40
-  hp: 1
+  pointValue: 100
+  hp: 10
   hit: {fileID: 4431421831115990044, guid: 60d1c992a4e3bac49919b3bccc3eabab, type: 3}
   death: {fileID: 1156918104896177325, guid: 9438e7553a6145c45825c1fd360a9725, type: 3}
