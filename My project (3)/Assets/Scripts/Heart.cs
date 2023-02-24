@@ -6,9 +6,10 @@ public class Heart : MonoBehaviour
 {
     Rigidbody2D _rigidbody2D;
     GameManager _gameManager;
+
+    public int speed = -40;
     void Start()
     {
-        int speed = Random.Range(-250, -100);
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.AddForce(new Vector2(0, speed));
         _gameManager = GameObject.FindObjectOfType<GameManager>();

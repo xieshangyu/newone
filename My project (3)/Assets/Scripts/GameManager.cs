@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     private int score = 0;
-    private int lives = 3;
+    private int lives = 5;
     public TextMeshProUGUI scoreUI;
     public TextMeshProUGUI livesUI;
 
@@ -32,6 +33,14 @@ public class GameManager : MonoBehaviour
     public void AddLife(int life) {
         lives += life;
         livesUI.text = "LIVES: " + lives;
+    }
+
+    public void deleteLife(int life) {
+        lives -= life;
+        livesUI.text = "LIVES: " + lives;
+        if (lives <= 0) {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     public void Update()

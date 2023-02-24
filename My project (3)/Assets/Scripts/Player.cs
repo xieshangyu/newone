@@ -13,12 +13,13 @@ public class Player : MonoBehaviour
     Rigidbody2D _rigidbody2D;
 
     AudioSource _audioSource;
-
+    GameManager _gameManager;
 
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource>();
+        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -30,7 +31,6 @@ public class Player : MonoBehaviour
 
 
         if(Input.GetButtonDown("Jump")) {
-            print("test");
             // _audioSource.PlayOneShot(shootSnd);
             GameObject newBullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
             newBullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bulletSpeed));
@@ -38,11 +38,12 @@ public class Player : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("EnemyJet")) {
+        if (other.CompareTag("bossBullet")) {
             // _gameManager.AddScore(pointValue);
             // Instantiate(explosion, transform.position, Quaternion.identity);
             // Destroy(other.gameObject);
-            Destroy(gameObject);
+            _gameManager.deleteLife(1);
+            Destroy(other.gameObject);
         }
     }
 

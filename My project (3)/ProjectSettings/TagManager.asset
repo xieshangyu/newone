@@ -6,6 +6,9 @@ TagManager:
   tags:
   - EnemyJet
   - Bullet
+  - GameManager
+  - EnemySpawner
+  - bossBullet
   layers:
   - Default
   - TransparentFX
