@@ -7,6 +7,7 @@ public class MediumBoss : MonoBehaviour
     public int hp = 10;
     public GameObject bulletSpawnerPrefab;
     public GameObject pulseFormation;
+    public GameObject bulletImpactPrefab;
     Rigidbody2D _rigidbody;
     Transform player;
     public int speed = 5;
@@ -95,7 +96,7 @@ public class MediumBoss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Bullet")) {
-            // _gameManager.AddScore(pointValue);
+            Instantiate(bulletImpactPrefab, other.transform.position, Quaternion.identity);            
             Destroy(other.gameObject);
             hp -= 1;
             if(hp <= 0) {

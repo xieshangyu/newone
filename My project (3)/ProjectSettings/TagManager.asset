@@ -10,6 +10,7 @@ TagManager:
   - EnemyBullet
   - Enemy
   - BossBulletSpawner
+  - BossHpUI
   layers:
   - Default
   - TransparentFX
