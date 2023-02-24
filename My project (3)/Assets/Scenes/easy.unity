@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 212444255}
   m_Layer: 5
   m_Name: Lives
-  m_TagString: Untagged
+  m_TagString: LivesUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10872,7 +10872,7 @@ GameObject:
   - component: {fileID: 1121198019}
   m_Layer: 5
   m_Name: Score
-  m_TagString: Untagged
+  m_TagString: ScoreUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

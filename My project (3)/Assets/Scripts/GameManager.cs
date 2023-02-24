@@ -45,6 +45,15 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
+        if(scoreUI == null) {
+            scoreUI = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<TextMeshProUGUI>();
+            scoreUI.text = "SCORE: " + score;
+        }
+        if(livesUI == null) {
+            livesUI = GameObject.FindGameObjectWithTag("LivesUI").GetComponent<TextMeshProUGUI>();
+            livesUI.text = "LIVES: " + lives;
+        }
+
     // !UNITY_WEBGL;
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
